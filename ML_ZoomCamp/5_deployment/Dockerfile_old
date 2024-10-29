@@ -1,0 +1,19 @@
+FROM python:3.10
+
+WORKDIR /app
+
+RUN pip install pipenv
+
+COPY ["Pipfile", "Pipfile.lock", "./"]
+
+# RUN pipenv install: This will create a new virtual env.
+# Since we are dealing with dokcer container no need for that.
+# Thus
+
+RUN pipenv install --system --deploy
+
+COPY ["predict.py", "model_C=1.0.bin", "./"]
+
+EXPOSE 9696
+
+ENTRYPOINT [ "waitress-serve", "--host=0.0.0.0", "--port=9696", "predict:app" ]
