@@ -1,0 +1,21 @@
+digraph {
+	A [label="records ≤ 0.50"]
+	B [label="job=partime ≤ 0.50"]
+	C [label="class: 0"]
+	D [label="job=partime > 0.50"]
+	E [label="class: 1"]
+	F [label="records > 0.50"]
+	G [label="seniority ≤ 6.50"]
+	H [label="class: 1"]
+	I [label="seniority > 6.50"]
+	J [label="class: 0"]
+	A -> B [label=yes]
+	A -> F [label=no]
+	B -> C [label=yes]
+	B -> D [label=no]
+	D -> E
+	F -> G [label=yes]
+	F -> I [label=no]
+	G -> H
+	I -> J
+}
